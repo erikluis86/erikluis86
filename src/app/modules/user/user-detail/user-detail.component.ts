@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute,  } from '@angular/router';
 import { ITitleh1 } from '@data/interfaces/title.metadata';
-import { UserInterfaz } from '@data/interfaces/user.metadata';
+
 
 
 @Component({
@@ -14,16 +15,14 @@ export class UserDetailComponent implements OnInit {
     text:"Detalle de Usuario",
     type:'secondary'
   } ;
+
+  public id : number = 0;
    public description:string = 'Cada trabajador es fundamental';
 
-   public user: UserInterfaz = {
-     id:1,
-     avatar:'./assets/erik.jpg',
-     name:'Erik Luis',
-     age:36,
-     description:'Desarrollador Full Stack'
-   }
-   constructor() { }
+   
+   constructor(private route: ActivatedRoute) {
+      this.id = this.route.snapshot.params['id']
+    }
 
   ngOnInit(): void {
   }

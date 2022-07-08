@@ -4,15 +4,30 @@ import { SkeletonComponent } from '@layout/skeleton/skeleton.component';
 
 const routes: Routes = [
   {
-    path:'', component: SkeletonComponent,
+    path:'',
+    redirectTo:'/panel/users',
+    pathMatch:'full'
+  },
+  {
+    path:'panel', component: SkeletonComponent,
     children:[
       {
-        path:'',
+        path:'users',
         loadChildren:()=>
         import('@modules/user/user.module').then((m)=>m.UserModule)
+      },
+      {
+        path:'**',
+        redirectTo:'/panel/users',
+        pathMatch:'full'
       }
     ]
   },
+  {
+    path:'**',
+    redirectTo:'/panel/users',
+    pathMatch:'full'
+  }
 ];
 
 @NgModule({
