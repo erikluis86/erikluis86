@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ITitleh1 } from '@data/interfaces/title.metadata';
+import { UserInterfaz } from '@data/interfaces/user.metadata';
 
 
 @Component({
@@ -14,6 +15,14 @@ export class UserDetailComponent implements OnInit {
     type:'secondary'
   } ;
    public description:string = 'Cada trabajador es fundamental';
+
+   public user: UserInterfaz = {
+     id:1,
+     avatar:'./assets/erik.jpg',
+     name:'Erik Luis',
+     age:36,
+     description:'Desarrollador Full Stack'
+   }
    constructor() { }
 
   ngOnInit(): void {
