@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ITitleh1 } from '@data/interfaces/title.metadata';
+
 
 @Component({
   selector: 'app-user-detail',
@@ -7,7 +9,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UserDetailComponent implements OnInit {
 
-  constructor() { }
+  public title : ITitleh1 = {
+    text:"Detalle de Usuario",
+    type:'secondary'
+  } ;
+   public description:string = 'Cada trabajador es fundamental';
+   constructor() { }
 
   ngOnInit(): void {
   }
