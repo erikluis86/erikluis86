@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import USERS_DATA from '@data/constants/users.const';
+//import USERS_DATA from '@data/constants/users.const';
 import { ITitleh1 } from '@data/interfaces/title.metadata';
-import { UserInterfaz } from '@data/interfaces/user.metadata';
+//import { UserInterfaz } from '@data/interfaces/user.metadata';
+import { UserService } from '@data/services/user.service';
 
 @Component({
   selector: 'app-user-list',
@@ -14,11 +15,30 @@ export class UserListComponent implements OnInit {
     text:"Lista de Usuarios",
     type:'success'}
 
-    public users: UserInterfaz[] = USERS_DATA
+  //  public users: UserInterfaz[] = USERS_DATA
 
-  constructor() { }
+  users : any//UserInterfaz[]=[]
+
+  constructor(private userService:UserService) { }
 
   ngOnInit(): void {
+   this.gotUsers();
+  }
+
+  gotUsers(){
+    this.userService.getAllusers().subscribe({
+      next: c => {
+        this.users = c
+        //console.log(c)
+      },    
+      error:error => {
+        console.log(error)
+        },
+      complete:()=>{
+        console.log('Request Complete')
+      }  
+    }           
+    )
   }
 
 }
