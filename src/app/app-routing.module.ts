@@ -5,8 +5,12 @@ import { SkeletonComponent } from '@layout/skeleton/skeleton.component';
 const routes: Routes = [
   {
     path:'',
-    redirectTo:'/panel/users',
+    redirectTo:'/auth/login',
     pathMatch:'full'
+  },
+  {
+    path:'auth',  //aki va directo al componente porq no tenemos layout
+    loadChildren:()=>import('@modules/auth/auth.module').then(x => x.AuthModule)
   },
   {
     path:'panel', component: SkeletonComponent,
@@ -16,16 +20,16 @@ const routes: Routes = [
         loadChildren:()=>
         import('@modules/user/user.module').then((m)=>m.UserModule)
       },
-      {
+     /* {
         path:'**',
-        redirectTo:'/panel/users',
+        redirectTo:'/auth/login',
         pathMatch:'full'
-      }
+      }*/
     ]
   },
   {
     path:'**',
-    redirectTo:'/panel/users',
+    redirectTo:'/auth/login',
     pathMatch:'full'
   }
 ];
